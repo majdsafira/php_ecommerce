@@ -9,7 +9,7 @@ if(!$id) {
     exit;
 }
 
-$statment = $pdo->prepare('DELETE FROM products WHERE product_id = :id');
+$statment = $pdo->prepare('DELETE FROM users WHERE user_id = :id');
 $statment->bindvalue(':id', $id);
 $statment->execute();
 

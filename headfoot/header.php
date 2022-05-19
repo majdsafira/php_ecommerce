@@ -13,7 +13,7 @@
   <body>
   <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#" style = "margin-left: 3.8%;">
+    <a class="navbar-brand" href="http://localhost/PHP_ECOMMERCE/admin/index.php" style = "margin-left: 3.8%;">
       Admin Dashboard
     </a>
   </div>

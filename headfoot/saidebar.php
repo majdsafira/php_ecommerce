@@ -27,8 +27,8 @@
                   
                 </li>
                 <li class="has-subnav">
-                    <a href="../admin/product/index.php">
-                        <i class="fa fa-laptop fa-2x"></i>
+                    <a href="http://localhost/PHP_ECOMMERCE/admin/product/index.php">
+                    <i class="fa fa-folder-open fa-2x"></i>
                         <span class="nav-text">
                            Product
                         </span>
@@ -39,57 +39,26 @@
                     <a href="#">
                        <i class="fa fa-list fa-2x"></i>
                         <span class="nav-text">
-                            Forms
+                        Categories
                         </span>
                     </a>
                     
                 </li>
                 <li class="has-subnav">
-                    <a href="#">
-                       <i class="fa fa-folder-open fa-2x"></i>
+                    <a href="http://localhost/php_ecommerce/admin/users/index.php">
+                       <i class="fa fa-users fa-2x"></i>
+
                         <span class="nav-text">
-                            Pages
+                            Users
                         </span>
                     </a>
                    
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="http://localhost/php_ecommerce/admin/adminn/index.php">
                         <i class="fa fa-bar-chart-o fa-2x"></i>
                         <span class="nav-text">
-                            Graphs and Statistics
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-font fa-2x"></i>
-                        <span class="nav-text">
-                           Quotes
-                        </span>
-                    </a>
-                </li>
-                <li>
-                   <a href="#">
-                       <i class="fa fa-table fa-2x"></i>
-                        <span class="nav-text">
-                            Tables
-                        </span>
-                    </a>
-                </li>
-                <li>
-                   <a href="#">
-                        <i class="fa fa-map-marker fa-2x"></i>
-                        <span class="nav-text">
-                            Maps
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                       <i class="fa fa-info fa-2x"></i>
-                        <span class="nav-text">
-                            Documentation
+                            Admin
                         </span>
                     </a>
                 </li>

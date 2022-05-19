@@ -4,23 +4,21 @@ include('../../connection/conn.php');
 include_once('../../headfoot/header.php');
 
 
-$statment = $pdo->prepare("SELECT * FROM `products`");
+
+$statment = $pdo->prepare("SELECT * FROM `users`");
 $statment->execute();
-$products = $statment->fetchAll(PDO::FETCH_ASSOC);
+$users = $statment->fetchAll(PDO::FETCH_ASSOC);
 
-
-
-//echo '<pre>';
-//var_dump($products);
-//echo '<pre>';
 
 ?>
+
+
 
 <!doctype html>
 <html lang="en">
 
 <head>
-  <title>Product</title>
+  <title>users</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -36,9 +34,9 @@ $products = $statment->fetchAll(PDO::FETCH_ASSOC);
 <body>
   <section style="margin-left: 5%;">
     <div style="margin-left: 1.5%;">
-      <h3>Edit Product</h3>
+      <h3>Edit Users</h3>
       <p>
-        <a href="./create_product.php" class="btn btn-success">ADD new product</a>
+        <a href="./create_user.php" class="btn btn-success">ADD new user</a>
       </p>
       <!-- On tables -->
     </div>
@@ -46,29 +44,27 @@ $products = $statment->fetchAll(PDO::FETCH_ASSOC);
     <div class="row row-cols-1 row-cols-md-2 g-4"
       style="display: grid; grid-template-columns: auto auto auto auto; gap: 20px; margin-left: 5px; width: 99%">
 
-      <?php foreach($products as $i => $product): ?>
+      <?php foreach($users as $i => $user): ?>
       <div class="col">
         <div class="card">
-          <img src="<?php echo $product['product_m_img']; ?>" class="card-img-top" style="width: 150px; height: 150px; display: block; margin-left: auto; margin-right: auto;">
+          <img src="<?php echo $user['user_img']; ?>" class="card-img-top" style="width: 150px; height: 150px; display: block; margin-left: auto; margin-right: auto;">
           <div class="card-body">
-            <h5 class="card-title"><?php echo $product['product_name']?></h5>
-            <h6 class="card-title"><?php echo $product['product_price']?></h6>
-            <h6 class="card-title"><?php $stat='SELECT * FROM categories';
-                                                $cat=$pdo->query($stat);
-                                                $share=$cat->fetchAll();
-                                                $share_name = $share[0] ['category_name'];
-                                                echo $share_name;?></h6>
-            <p class="card-text"><?php echo $product['product_description']?></p>
+            <h5 class="card-title"><?php echo $user['user_name']?></h5>
+            <h6 class="card-title"><?php echo $user['user_email']?></h6>
+            <h6 class="card-text"><?php echo $user['user_password']?></h6>
+            <h6 class="card-text"><?php echo $user['user_address']?></h6>
+            <h6 class="card-text"><?php echo $user['user_phone']?></h6>
 
             <form style="display: inline-block" method="post" action="./delete.php">
-              <input type="hidden" name="id" value="<?php echo $product['product_id']; ?>">
-              <button type="submit" id="<?php echo $product['product_id'];?>"
+              <input type="hidden" name="id" value="<?php echo $user['user_id']; ?>">
+              <button type="submit" id="<?php echo $user['user_id'];?>"
                 class="btn btn-outline-danger">Delete</button>
             </form>
-            <a href="./edit.php?id=<?php echo $product['product_id']?>" class="btn btn-outline-primary">Edit</a>
+            <a href="./edit.php?id=<?php echo $user['user_id']?>" class="btn btn-outline-primary">Edit</a>
           </div>
         </div>
       </div>
+      
       <?php endforeach ?>
     </div>
   </section>
@@ -86,6 +82,9 @@ $products = $statment->fetchAll(PDO::FETCH_ASSOC);
 </body>
 
 </html>
+
+
+
 
 <?php
 //sidebar include 
