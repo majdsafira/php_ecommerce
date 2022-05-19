@@ -16,14 +16,14 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     
 
 
-    $image = $_FILES['image'] ?? null;
+    $image = $_FILES['user_img'] ?? NULL;
     $imagePath = '';
     if ($image) {
         $imagePath = 'images/' . randomString(8) . $image['name'];
         
         move_uploaded_file($image['tmp_name'], $imagePath);
     }
-    
+       
     $statment = $pdo->prepare ("INSERT INTO `users` (`user_img`, `user_name`, `user_email`, `user_password`, `user_address`, `user_phone`)
                                 VALUES (:image, :user_name, :user_email, :user_password, :user_address, :user_phone)");
     
