@@ -4,6 +4,22 @@ include_once('../../connection/conn.php');
 include_once('../../headfoot/header.php');
 
 
+$id = $GET['id'] ?? null;
+if(!$id) {
+    header('location: index.php');
+    exit;
+}
+
+
+$statment = $pdo->prepare('SELECT * FROM products WHERE product_id = :id');
+$statment->bindvalue(':id', $id);
+$statment->execute();
+$product = $statment->fetch(PDO::FETCH_ASSOC);
+
+echo '<pre>';
+var_dump('$product');
+echo '<pre>';
+exit;
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
     $product_name = $_POST['product_name'];

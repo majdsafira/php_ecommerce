@@ -90,7 +90,8 @@ $products = $statment->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                     </div>
 
-                        
+                    <a href = "./edit.php?id = <?php echo $product['id']?>" class="btn btn-outline-primary">Edit</a>
+
             </div>
         </div>
     </div>
