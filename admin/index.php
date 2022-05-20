@@ -29,7 +29,7 @@ include_once ('../headfoot/header.php');
                 <div class="card-body">
                     <h5 class="card-title">Admin</h5>
                     <p class="card-text">This is a longer card with supporting text below as a natural lead-in to</p>
-                    <a href="http://localhost/php_ecommerce/admin/adminn/index.php" class="btn btn-success">Edit Product</a>
+                    <a href="./adminn/index.php" class="btn btn-success">Edit Product</a>
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@ include_once ('../headfoot/header.php');
                 <div class="card-body">
                     <h5 class="card-title">Users</h5>
                     <p class="card-text">This is a longer card with supporting text below as a natural lead-in to</p>
-                    <a href="http://localhost/php_ecommerce/admin/users/index.php" class="btn btn-success">Edit Users</a>
+                    <a href="./users/index.php" class="btn btn-success">Edit Users</a>
                 </div>
             </div>
         </div>
@@ -49,7 +49,7 @@ include_once ('../headfoot/header.php');
                 <div class="card-body">
                     <h5 class="card-title">Category</h5>
                     <p class="card-text">This is a longer card with supporting text below as a natural lead-in to.</p>
-                    <button type="button" class="btn btn-success">Edit Category</button>
+                    <a href="./categories/index.php" class="btn btn-success">Edit Product</a>
                 </div>
             </div>
         </div>
@@ -60,7 +60,7 @@ include_once ('../headfoot/header.php');
                     <h5 class="card-title">Product</h5>
                     <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
                         additional content. This content is a little bit longer.</p>
-                    <a href="http://localhost/php_ecommerce/admin/product/index.php" class="btn btn-success">Edit Product</a>
+                    <a href="./product/index.php" class="btn btn-success">Edit Product</a>
                 </div>
             </div>
         </div>

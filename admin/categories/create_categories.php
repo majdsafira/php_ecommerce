@@ -3,25 +3,16 @@ include_once('../../connection/conn.php');
 //header include
 include_once('../../headfoot/header.php');
 
-$stat='SELECT * FROM categories';
-      
-      $cat=$pdo->query($stat);
-      $share=$cat->fetchAll(PDO::FETCH_ASSOC);
-      $share_id = $share[0]['category_id'];
-      //echo '<pre>';
-      //var_dump($share);
-      //echo '<pre>';
+
+
 if($_SERVER['REQUEST_METHOD']=='POST'){
   if (!is_dir('images')) {
     mkdir('images');
 }
-    $product_name = $_POST['product_name'];
-    $product_description = $_POST['product_description'];
-    $product_price = $_POST['product_price'];
-    
+    $category_name = $_POST['category_name'];
 
 
-    $image = $_FILES['image'] ?? null;
+    $image = $_FILES['category_img'] ?? null;
     $imagePath = '';
     if ($image) {
         $imagePath = 'images/' . randomString(8) . $image['name'];
@@ -30,14 +21,10 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     }
     
 
-    $statment = $pdo->prepare("INSERT INTO `products` (`product_name`, `product_description`, `product_m_img`, `product_price`, `category_id`)
-                VALUES (:product_name, :product_description, :image, :product_price, :category_id)");
-    $statment->bindValue(':product_name', $product_name);
-    $statment->bindValue(':product_description', $product_description);
+    $statment = $pdo->prepare("INSERT INTO `categories` (`category_name`, `category_img`)
+                              VALUES (:category_name, :image)");
+    $statment->bindValue(':category_name', $category_name);
     $statment->bindValue(':image', $imagePath);
-    $statment->bindValue(':product_price', $product_price);
-    $statment->bindValue(':category_id', $share_id);
-    
     $statment->execute();
     header("location: index.php");
     }
@@ -66,7 +53,7 @@ function randomString($n)
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add Product</title>
+  <title>Add category</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
     integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
@@ -82,34 +69,15 @@ function randomString($n)
 
     <form method="post" style="margin-left: 2%; margin-right: 2%" enctype="multipart/form-data">
       <div class="form-group">
-        <label>Product Name</label>
-        <input type="text" class="form-control" name="product_name">
+        <label>category Name</label>
+        <input type="text" class="form-control" name="category_name">
       </div>
       <div class="form-group">
-        <label>Product Discription</label>
-        <textarea class="form-control" name="product_description"></textarea>
-      </div>
-      <div class="form-group">
-        <label>Price</label>
-        <input type="text" class="form-control" name="product_price">
-      </div>
-      <div class="form-group">
-        <label>Priduct Image</label>
+        <label>category Image</label>
         <input type="file" class="form-control" name="image">
       </div>
-      <div class="form-group">
-        <label class="form-label">Categories</label>
-        <select class="form-select" aria-label="Default select example" name="categories">
-          <option selected>Open this select menu</option>
-          <?php foreach ($share as $value):?>
-          <option value="<?php echo $value['category_id'] ?>"><?php echo $value['category_name'] ?></option>
-          <?php endforeach; ?>
-        </select>
-
-        </select>
-      </div>
       <button type="submit" class="btn btn-primary">Submit</button>
-      <a href="./index.php" class="btn btn-primary">Product Page</a>
+      <a href="./index.php" class="btn btn-primary">category Page</a>
     </form>
 
   </section>

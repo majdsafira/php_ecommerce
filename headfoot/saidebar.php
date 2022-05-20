@@ -36,7 +36,7 @@
                     
                 </li>
                 <li class="has-subnav">
-                    <a href="#">
+                    <a href="http://localhost/PHP_ECOMMERCE/admin/categories/index.php">
                        <i class="fa fa-list fa-2x"></i>
                         <span class="nav-text">
                         Categories
