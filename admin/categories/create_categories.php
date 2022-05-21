@@ -74,7 +74,7 @@ function randomString($n)
       </div>
       <div class="form-group">
         <label>category Image</label>
-        <input type="file" class="form-control" name="image">
+        <input type="file" class="form-control" name="category_img">
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
       <a href="./index.php" class="btn btn-primary">category Page</a>

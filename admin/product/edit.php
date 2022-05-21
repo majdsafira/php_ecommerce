@@ -11,13 +11,14 @@ if(!$id) {
 }
 
 
-$statment = $pdo->prepare('DELETE FROM products WHERE product_id = :id');
+$statment = $pdo->prepare('SELECT * FROM products WHERE product_id = :id');
 $statment->bindvalue(':id', $id);
 $statment->execute();
 $products = $statment->fetchAll(PDO::FETCH_ASSOC);
 
 
 $stat='SELECT * FROM categories';
+
       
       $cat=$pdo->query($stat);
       $share=$cat->fetchAll();
@@ -26,32 +27,52 @@ $stat='SELECT * FROM categories';
       //var_dump($share_id);
       //echo '<pre>'
 
+
+
+
+
+      //print_r($products);
+$product_name = $products[0]['product_name'];
+$product_description = $products[0]['product_description'];
+$product_price = $products[0]['product_price'];
+    
+    
+
 if($_SERVER['REQUEST_METHOD']=='POST'){
   if (!is_dir('images')) {
     mkdir('images');
 }
+
     $product_name = $_POST['product_name'];
     $product_description = $_POST['product_description'];
     $product_price = $_POST['product_price'];
     
 
-
-    $image = $_FILES['image'] ?? null;
-    $imagePath = '';
-    if ($image) {
-        $imagePath = 'images/' . randomString(8) . $image['name'];
+    
+    
+    function imagePath()
+    {
+        global $imagePath;
+        $image = $_FILES['image'] ?? null;
         
-        move_uploaded_file($image['tmp_name'], $imagePath);
+        $imagePath = $_POST["path"] ;
+        if ($image && $image['tmp_name']) {
+            $imagePath = 'IMG-' . uniqid() . "-" . $image['name'];
+            move_uploaded_file($image['tmp_name'], "images/" . $imagePath);
+        }
     }
+    imagePath();
     
 
-    $statment = $pdo->prepare("INSERT INTO `products` (`product_name`, `product_description`, `product_m_img`, `product_price`, `category_id`)
-                VALUES (:product_name, :product_description, :image, :product_price, :category_id)");
+    $statment = $pdo->prepare("UPDATE `products` SET `product_name` = :product_name, 
+                                      `product_description` = :product_description, 
+                                      `product_m_img`= :image, `product_price`= :product_price, `category_id` =:category_id WHERE product_id = :id");
     $statment->bindValue(':product_name', $product_name);
     $statment->bindValue(':product_description', $product_description);
     $statment->bindValue(':image', $imagePath);
     $statment->bindValue(':product_price', $product_price);
     $statment->bindValue(':category_id', $share_id);
+    $statment->bindValue(':id', $id);
     
     $statment->execute();
     header("location: index.php");
@@ -60,8 +81,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
 
     
-function randomString($n)
-{
+function randomString($n) {
     $str = '';
     $characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     for ($i = 0; $i < $n; $i++) {
@@ -81,7 +101,7 @@ function randomString($n)
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add Product</title>
+  <title>edit Product</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
     integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
@@ -97,24 +117,26 @@ function randomString($n)
 
     <form method="post" style="margin-left: 2%; margin-right: 2%" enctype="multipart/form-data">
 
-    <?php if ($product['product_m_img']): ?>
-        <img src="<?php echo $product['product_m_img']; ?>">
-    <?php endif ?>
+      <?php if ($products[0]['product_m_img']): ?>
+          <img src="<?php echo $products[0]['product_m_img']; ?>" style="width: 150px; height: 150px; display: block;">
+      <?php endif ?>
       <div class="form-group">
         <label>Product Name</label>
-        <input type="text" class="form-control" name="product_name">
+        <input type="text" class="form-control" name="product_name" value = "<?php echo $products[0]['product_name']; ?>">
       </div>
       <div class="form-group">
         <label>Product Discription</label>
-        <textarea class="form-control" name="product_description"></textarea>
+        <textarea class="form-control" name="product_description" ><?php echo $products[0]['product_description']; ?></textarea>
       </div>
       <div class="form-group">
         <label>Price</label>
-        <input type="text" class="form-control" name="product_price">
+        <input type="text" class="form-control" name="product_price" value = "<?php echo $products[0]['product_name']; ?>">
       </div>
       <div class="form-group">
         <label>Priduct Image</label>
-        <input type="file" class="form-control" name="image">
+        <input type="file" class="form-control" name="image" value = "<?php echo $products[0]['product_m_img']; ?>">
+        <input type="hidden" class="form-control" name="path" value = "<?php echo $products[0]['product_m_img']; ?>">
+
       </div>
       <div class="form-group">
         <label class="form-label">Categories</label>

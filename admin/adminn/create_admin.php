@@ -46,19 +46,19 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     <form method="post" style="margin-left: 2%; margin-right: 2%" enctype="multipart/form-data">
       
       <div class="form-group">
-        <label>user name</label>
+        <label>admin name</label>
         <input type="text" class="form-control" name="admin_name">
       </div>
       <div class="form-group">
-        <label>user email</label>
+        <label>admin email</label>
         <input type="email" class="form-control" name="admin_email">
       </div>
       <div class="form-group">
-        <label>user password</label>
+        <label>admin password</label>
         <input type="password" class="form-control" name="admin_password">
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
-      <a href="./index.php" class="btn btn-primary">Product Page</a>
+      <a href="./index.php" class="btn btn-primary">admin Page</a>
     </form>
 
   </section>

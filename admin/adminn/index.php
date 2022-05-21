@@ -36,7 +36,7 @@ $admins = $statment->fetchAll(PDO::FETCH_ASSOC);
     <div style="margin-left: 1.5%;">
       <h3>Edit Admin</h3>
       <p>
-        <a href="./create_admin.php" class="btn btn-success">ADD new user</a>
+        <a href="./create_admin.php" class="btn btn-success">ADD new admin</a>
       </p>
       <!-- On tables -->
     </div>

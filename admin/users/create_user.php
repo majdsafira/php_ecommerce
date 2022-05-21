@@ -103,7 +103,7 @@ function randomString($n)
         <input type="text" class="form-control" name="user_phone">
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
-      <a href="./index.php" class="btn btn-primary">Product Page</a>
+      <a href="./index.php" class="btn btn-primary">users Page</a>
     </form>
 
   </section>
